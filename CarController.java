@@ -1,6 +1,5 @@
-import javax.naming.ldap.HasControls;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,12 +33,17 @@ public class CarController {
         Volvo240 car11 = new Volvo240();
         car11.position.x = 100;
         car11.position.y = 100;
+
+        Volvo240 car21 = new Volvo240();
+        car21.position.x = 300;
+        car21.position.y = 200;
         // Instance of this class
         CarController cc = new CarController();
 
 
         cc.cars.add(new Volvo240());
         cc.cars.add(car11);
+        cc.cars.add(car21);
 
 
         // Start a new view and send a reference of self
@@ -49,9 +53,6 @@ public class CarController {
         cc.timer.start();
     }
 
-    public ArrayList<Car> getCars() {
-        return cars;
-    }
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
@@ -79,7 +80,7 @@ public class CarController {
                 int y = (int) Math.round(car.position.y);
                 int borderX = frame.drawPanel.getWidth();
                 int borderY = frame.drawPanel.getHeight();
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(x, y, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
                 if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){

@@ -23,8 +23,7 @@ public class DrawPanel extends JPanel{
 
 
     // To keep track of a single car's position
-    Point volvoPoint = new Point();
-    Point volvoPoint2 = new Point(100,100);
+
 
     ArrayList<Point> pointlist = new ArrayList<>();
 
@@ -33,14 +32,21 @@ public class DrawPanel extends JPanel{
     Point volvoWorkshopPoint = new Point(300,300);
 
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
-
-
+    void moveit(int x, int y, Car c){
+        int p = carC.cars.indexOf(c);
+        pointlist.get(p).x = x;
+        pointlist.get(p).y = y;
     }
 
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
+    public DrawPanel(int x, int y, CarController cc) {
+        carC = cc;
+
+        for (int i = 0; i < cc.cars.size(); i++) {
+            pointlist.add(new Point((int) Math.round(cc.cars.get(i).position.x), (int) Math.round(cc.cars.get(i).position.y)));
+        }
+
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
@@ -71,8 +77,9 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(SaabImage, volvoPoint.x, volvoPoint.y, null);
-        g.drawImage(volvoImage, volvoPoint2.x, volvoPoint2.y, null);
+        for (int i = 0; i < carC.cars.size(); i++) {
+            g.drawImage(volvoImage, pointlist.get(i).x, pointlist.get(i).y, null);
+        }
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
 }
