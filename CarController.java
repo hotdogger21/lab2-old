@@ -30,11 +30,11 @@ public class CarController {
     //methods:
 
     public static void main(String[] args) {
-        Volvo240 car11 = new Volvo240();
+        Scania car11 = new Scania();
         car11.position.x = 100;
         car11.position.y = 100;
 
-        Volvo240 car21 = new Volvo240();
+        Saab95 car21 = new Saab95();
         car21.position.x = 300;
         car21.position.y = 200;
         // Instance of this class
