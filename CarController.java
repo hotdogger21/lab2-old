@@ -40,10 +40,16 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
+        Scania car31 = new Scania();
+        car31.position.x = 500;
+        car31.position.y = 100;
+
+
 
         cc.cars.add(new Volvo240());
         cc.cars.add(car11);
         cc.cars.add(car21);
+        cc.cars.add(car31);
 
 
         // Start a new view and send a reference of self

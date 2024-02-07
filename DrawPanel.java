@@ -77,6 +77,7 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         for (int i = 0; i < carC.cars.size(); i++) {
             BufferedImage image = volvoImage;
 
