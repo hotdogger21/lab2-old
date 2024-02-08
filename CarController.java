@@ -146,6 +146,8 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
                 }
+
+
             }
         }
     }
