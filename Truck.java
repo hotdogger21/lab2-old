@@ -13,6 +13,13 @@ abstract class Truck extends Car{
         this.hasRamp = hasRamp;
     }
 
+    public void startEngine(){
+        if (hasRamp && ramp.rampOpen) {
+            throw new RuntimeException("no driving when the platform is raised!");
+        }
+        else currentSpeed = 0.1;
+    }
+
     @Override
     public void gas(double amount){
         if (amount < 0){

@@ -2,8 +2,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
+import static java.lang.System.out;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -30,26 +32,29 @@ public class CarController {
     //methods:
 
     public static void main(String[] args) {
-        Scania car11 = new Scania();
-        car11.position.x = 100;
-        car11.position.y = 100;
+        Volvo240 car1 = new Volvo240();
+        car1.position.x = 100;
+        car1.direction = 3;
 
-        Saab95 car21 = new Saab95();
-        car21.position.x = 300;
-        car21.position.y = 200;
+        Scania car2 = new Scania();
+        car2.position.x = 0;
+        car2.position.y = 100;
+
+        Saab95 car3 = new Saab95();
+        car3.position.x = 0;
+        car3.position.y = 200;
+
+        workshop<Volvo240> volvoworkshop = new workshop<>(5);
+        volvoworkshop.position.x = 300;
+        volvoworkshop.position.y = 300;
+
+
         // Instance of this class
         CarController cc = new CarController();
 
-        Scania car31 = new Scania();
-        car31.position.x = 500;
-        car31.position.y = 100;
-
-
-
-        cc.cars.add(new Volvo240());
-        cc.cars.add(car11);
-        cc.cars.add(car21);
-        cc.cars.add(car31);
+        cc.cars.add(car1);
+        cc.cars.add(car2);
+        cc.cars.add(car3);
 
 
         // Start a new view and send a reference of self
@@ -74,6 +79,50 @@ public class CarController {
         }
     }
 
+    public void TurboOn(){
+        for (Car car : cars) {
+            if (car instanceof Saab95){
+                ((Saab95) car).setTurboOn();
+            }
+        }
+    }
+
+    public void TurboOff(){
+        for (Car car : cars) {
+            if (car instanceof Saab95){
+                ((Saab95) car).setTurboOff();
+            }
+        }
+    }
+
+    public void LiftBed(){
+        for (Car car : cars) {
+            if (car instanceof Scania){
+                ((Scania) car).openRamp();
+            }
+        }
+    }
+
+    public void LowerBed(){
+        for (Car car : cars) {
+            if (car instanceof Scania){
+                ((Scania) car).closeRamp();
+            }
+        }
+    }
+
+    public void StartAll() {
+        for (Car car : cars) {
+            car.startEngine();
+        }
+    }
+
+    public void StopAll() {
+        for (Car car : cars) {
+            car.stopEngine();
+        }
+    }
+
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
@@ -89,6 +138,10 @@ public class CarController {
                 frame.drawPanel.moveit(x, y, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
+                if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+                    car.turnLeft();
+                    car.turnLeft();
+                }
                 if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
                     car.turnLeft();
                     car.turnLeft();

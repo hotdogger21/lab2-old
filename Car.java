@@ -22,7 +22,7 @@ abstract class Car implements Movable{
         stopEngine();
 
         // movement saker
-        this.direction = 1;
+        this.direction = 0;
         this.position = new Point2D.Double(0,0);
     }
 
@@ -91,16 +91,16 @@ abstract class Car implements Movable{
     }
     @Override
     public void move() {
-        if (direction == 1){
+        if (direction == 0){
             this.position.y += currentSpeed;
         }
-        if (direction == 3){
+        if (direction == 2){
             this.position.y -= currentSpeed;
         }
-        if (direction == 2){
+        if (direction == 1){
             this.position.x += currentSpeed;
         }
-        if (direction == 4){
+        if (direction == 3){
             this.position.x -= currentSpeed;
         }
     }
