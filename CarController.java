@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
 import static java.lang.System.out;
 
 /*
@@ -27,21 +29,23 @@ public class CarController {
     // A list of cars, modify if needed
     protected ArrayList<Car> cars = new ArrayList<>();
 
+    protected ArrayList<workshop<Volvo240>> volvowork = new ArrayList<>();
+
 
 
     //methods:
 
     public static void main(String[] args) {
         Volvo240 car1 = new Volvo240();
-        car1.position.x = 100;
-        car1.direction = 3;
+        car1.position.x = 300;
+        car1.direction = 2;
 
         Scania car2 = new Scania();
         car2.position.x = 0;
         car2.position.y = 100;
 
         Saab95 car3 = new Saab95();
-        car3.position.x = 0;
+        car3.position.x = 300;
         car3.position.y = 200;
 
         workshop<Volvo240> volvoworkshop = new workshop<>(5);
@@ -55,6 +59,8 @@ public class CarController {
         cc.cars.add(car1);
         cc.cars.add(car2);
         cc.cars.add(car3);
+
+        cc.volvowork.add(volvoworkshop);
 
 
         // Start a new view and send a reference of self
@@ -129,7 +135,7 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
+            /*for (Car car : cars) {
                 car.move();
                 int x = (int) Math.round(car.position.x);
                 int y = (int) Math.round(car.position.y);
@@ -146,8 +152,39 @@ public class CarController {
                     car.turnLeft();
                     car.turnLeft();
                 }
+            }*/
 
+            Iterator<Car> carIterator = cars.iterator();
 
+            while (carIterator.hasNext()){
+                Car car = carIterator.next();
+                {
+                    car.move();
+                    int x = (int) Math.round(car.position.x);
+                    int y = (int) Math.round(car.position.y);
+                    int borderX = frame.drawPanel.getWidth();
+                    int borderY = frame.drawPanel.getHeight();
+                    frame.drawPanel.moveit(x, y, car);
+                    // repaint() calls the paintComponent method of the panel
+                    frame.drawPanel.repaint();
+                    if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+                        car.turnLeft();
+                        car.turnLeft();
+                    }
+                    if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
+                        car.turnLeft();
+                        car.turnLeft();
+                    }
+
+                    if (car instanceof Volvo240){
+                        for (workshop<Volvo240> w : volvowork){
+                            if (car.position.distance(w.position) < 25){
+                                w.addCar((Volvo240) car);
+                                carIterator.remove();
+                            }
+                        }
+                    }
+                }
             }
         }
     }
