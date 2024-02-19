@@ -69,6 +69,11 @@ public class Application {
         }
     }
 
+    private void gitTest(){
+
+        System.out.println("hello");
+    }
+
 
 
     private class TimerListener implements ActionListener {
