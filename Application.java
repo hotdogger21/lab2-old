@@ -30,11 +30,11 @@ public class Application {
         car2.position.x = 0;
         car2.position.y = 100;
 
-        Saab95 car3 = new Saab95();
+        Saab95 car3 = CarFactory.createSaab();
         car3.position.x = 300;
         car3.position.y = 200;
 
-        Workshop<Volvo240> volvoworkshop = new Workshop<>(5);
+        Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
         volvoworkshop.position.x = 300;
         volvoworkshop.position.y = 300;
 
