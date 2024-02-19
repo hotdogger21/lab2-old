@@ -4,11 +4,11 @@ public class CarFactory {
     return  new Volvo240();
     }
 
-    public static Volvo240 createSaab(){
-        return  new Volvo240();
+    public static Saab95 createSaab(){
+        return  new Saab95();
     }
-    public static Volvo240 createScania(){
-        return  new Volvo240();
+    public static Scania createScania(){
+        return  new Scania();
     }
 
 }

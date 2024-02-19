@@ -31,38 +31,6 @@ public class CarController {
 
     //methods:
 
-    public static void main(String[] args) {
-        Volvo240 car1 = new Volvo240();
-        car1.position.x = 100;
-        car1.direction = 3;
-
-        Scania car2 = new Scania();
-        car2.position.x = 0;
-        car2.position.y = 100;
-
-        Saab95 car3 = new Saab95();
-        car3.position.x = 0;
-        car3.position.y = 200;
-
-        workshop<Volvo240> volvoworkshop = new workshop<>(5);
-        volvoworkshop.position.x = 300;
-        volvoworkshop.position.y = 300;
-
-
-        // Instance of this class
-        CarController cc = new CarController();
-
-        cc.cars.add(car1);
-        cc.cars.add(car2);
-        cc.cars.add(car3);
-
-
-        // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
-
-        // Start the timer
-        cc.timer.start();
-    }
 
 
     public void gas(int amount) {

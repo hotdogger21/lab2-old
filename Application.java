@@ -22,11 +22,11 @@ public class Application {
         cc = new CarController();
 
 
-        Volvo240 car1 = new Volvo240();
+        Volvo240 car1 = CarFactory.createVolvo();
         car1.position.x = 300;
         car1.direction = 2;
 
-        Scania car2 = new Scania();
+        Scania car2 = CarFactory.createScania();
         car2.position.x = 0;
         car2.position.y = 100;
 
