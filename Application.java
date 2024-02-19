@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,19 +8,54 @@ public class Application {
 
 
     private CarView frame;
-    private Timer timer;
+    private final int delay = 50;
+    private Timer timer = new Timer(delay, new TimerListener());
     private CarController cc;
     private ArrayList<Car> cars = new ArrayList<>();
     private ArrayList<Workshop> workshops = new ArrayList<>();
     private ArrayList<GraphicsComponent> graphicsComponents = new ArrayList<>();
 
+    protected ArrayList<Workshop<Volvo240>> volvowork = new ArrayList<>();
 
     public Application() {
 
         cc = new CarController();
-        frame = new CarView("Simulation", cc);
 
 
+        Volvo240 car1 = new Volvo240();
+        car1.position.x = 300;
+        car1.direction = 2;
+
+        Scania car2 = new Scania();
+        car2.position.x = 0;
+        car2.position.y = 100;
+
+        Saab95 car3 = new Saab95();
+        car3.position.x = 300;
+        car3.position.y = 200;
+
+        Workshop<Volvo240> volvoworkshop = new Workshop<>(5);
+        volvoworkshop.position.x = 300;
+        volvoworkshop.position.y = 300;
+
+
+        // Instance of this class
+        CarController cc = new CarController();
+
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+
+        cc.cars = cars;
+
+        volvowork.add(volvoworkshop);
+
+
+        // Start a new view and send a reference of cc
+        frame = new CarView("CarSim 1.0", cc);
+
+        // Start the timer
+        timer.start();
     }
 
 
