@@ -1,6 +1,6 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-public class workshop <T> {
+public class workshop <T extends Car> {
 
     protected ArrayList<T> carlist;
     private final int size;

@@ -20,6 +20,8 @@ public class DrawPanel extends JPanel{
     BufferedImage ScaniaImage;
     BufferedImage SaabImage;
 
+    HashMap<String, BufferedImage> piclist = new HashMap<>();
+
 
 
     // To keep track of a single car's position
@@ -43,12 +45,6 @@ public class DrawPanel extends JPanel{
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y, CarController cc) {
         carC = cc;
-        /*
-        for (Car c : carC.cars) {
-            ImagePoints.put(c, new Point((int) Math.round(c.position.x), (int) Math.round(c.position.y)));
-        }
-
-        */
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
@@ -80,6 +76,8 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        //skulle kunna implementera en hashmap istället för att hårdkoda detta
 
         for (Car c : carC.cars) {
             BufferedImage image = volvoImage;

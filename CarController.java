@@ -70,6 +70,7 @@ public class CarController {
         cc.timer.start();
     }
 
+    //flytta dessa till carview kanske
 
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
@@ -134,25 +135,9 @@ public class CarController {
      * view to update its images. Change this method to your needs.
      * */
     private class TimerListener implements ActionListener {
+
+        //tillämpa functional decomposition på denna metod
         public void actionPerformed(ActionEvent e) {
-            /*for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.position.x);
-                int y = (int) Math.round(car.position.y);
-                int borderX = frame.drawPanel.getWidth();
-                int borderY = frame.drawPanel.getHeight();
-                frame.drawPanel.moveit(x, y, car);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-                if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-                if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-            }*/
 
             Iterator<Car> carIterator = cars.iterator();
 
@@ -162,11 +147,17 @@ public class CarController {
                     car.move();
                     int x = (int) Math.round(car.position.x);
                     int y = (int) Math.round(car.position.y);
+
+                    //finns det något annat sätt att få tag i drawpanels höjd och bredd utan att ha en komposition av carview
                     int borderX = frame.drawPanel.getWidth();
                     int borderY = frame.drawPanel.getHeight();
-                    frame.drawPanel.moveit(x, y, car);
+                    //frame.drawPanel.moveit(x, y, car);
                     // repaint() calls the paintComponent method of the panel
+
+                    //flytta till drawpanel kanske?
                     frame.drawPanel.repaint();
+
+
                     if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
                         car.turnLeft();
                         car.turnLeft();
