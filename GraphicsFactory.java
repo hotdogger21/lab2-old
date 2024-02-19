@@ -1,0 +1,2 @@
+public class GraphicsFactory {
+}
