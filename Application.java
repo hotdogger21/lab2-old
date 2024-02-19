@@ -69,6 +69,10 @@ public class Application {
         }
     }
 
+    public void gitTest(){
+        // haha
+    }
+
 
 
     private class TimerListener implements ActionListener {
