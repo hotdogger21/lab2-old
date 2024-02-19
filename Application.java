@@ -91,17 +91,7 @@ public class Application {
                     //observer pattern (i framtiden)
                     frame.drawPanel.repaint();
 
-                    /*
-                    if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
-                        car.turnLeft();
-                        car.turnLeft();
-                    }
-                    if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
-                        car.turnLeft();
-                        car.turnLeft();
-                    }
-
-                     */
+                    CheckCarCollision(car,borderX,borderY);
 
                     if (car instanceof Volvo240){
                         for (Workshop<Volvo240> w : workshops){
