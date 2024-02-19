@@ -1,6 +1,6 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-public class workshop <T extends Car> {
+public class Workshop <T extends Car> {
 
     protected ArrayList<T> carlist;
     private final int size;
@@ -8,7 +8,7 @@ public class workshop <T extends Car> {
     protected Point2D.Double position;
 
 
-    public workshop(int size){
+    public Workshop(int size){
         carlist = new ArrayList<>();
         this.size = size;
         this.position = new Point2D.Double(0,0);
