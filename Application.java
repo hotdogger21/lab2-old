@@ -58,6 +58,17 @@ public class Application {
         timer.start();
     }
 
+    private void CheckCarCollision (Car car, int borderX, int borderY){
+        if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+            car.turnLeft();
+            car.turnLeft();
+        }
+        if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
+            car.turnLeft();
+            car.turnLeft();
+        }
+    }
+
 
 
     private class TimerListener implements ActionListener {
@@ -71,19 +82,16 @@ public class Application {
                 Car car = carIterator.next();
                 {
                     car.move();
-                    int x = (int) Math.round(car.position.x);
-                    int y = (int) Math.round(car.position.y);
 
                     //finns det något annat sätt att få tag i drawpanels höjd och bredd utan att ha en komposition av carview
                     int borderX = frame.drawPanel.getWidth();
                     int borderY = frame.drawPanel.getHeight();
-                    //frame.drawPanel.moveit(x, y, car);
-                    // repaint() calls the paintComponent method of the panel
 
-                    //flytta till drawpanel kanske?
+
+                    //observer pattern (i framtiden)
                     frame.drawPanel.repaint();
 
-
+                    /*
                     if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
                         car.turnLeft();
                         car.turnLeft();
@@ -93,8 +101,10 @@ public class Application {
                         car.turnLeft();
                     }
 
+                     */
+
                     if (car instanceof Volvo240){
-                        for (Workshop<Volvo240> w : volvowork){
+                        for (Workshop<Volvo240> w : workshops){
                             if (car.position.distance(w.position) < 25){
                                 w.addCar((Volvo240) car);
                                 carIterator.remove();
