@@ -13,7 +13,7 @@ public class Application {
     private CarController cc;
     private ArrayList<Car> cars = new ArrayList<>();
     private ArrayList<Workshop> workshops = new ArrayList<>();
-    private ArrayList<GraphicsComponent> graphicsComponents = new ArrayList<>();
+    static ArrayList<GraphicsComponent> graphicsComponents = new ArrayList<>();
 
     protected ArrayList<Workshop<Volvo240>> volvowork = new ArrayList<>();
 
@@ -21,25 +21,33 @@ public class Application {
 
         cc = new CarController();
 
+        GraphicsFactory factory = new GraphicsFactory();
+
 
         Volvo240 car1 = CarFactory.createVolvo();
         car1.position.x = 300;
         car1.direction = 2;
+        graphicsComponents.add(factory.createGraphics("pics/Volvo240.jpg", car1));
+
 
         Scania car2 = CarFactory.createScania();
         car2.position.x = 0;
         car2.position.y = 100;
+        graphicsComponents.add(factory.createGraphics("pics/Scania.jpg", car2));
 
         Saab95 car3 = CarFactory.createSaab();
         car3.position.x = 300;
         car3.position.y = 200;
+        graphicsComponents.add( factory.createGraphics("pics/Saab95.jpg", car3));
 
         Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
         volvoworkshop.position.x = 300;
         volvoworkshop.position.y = 300;
+        graphicsComponents.add(factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
 
 
-        // Instance of this class
+
+        // Instance of this classs
         CarController cc = new CarController();
 
         cars.add(car1);
@@ -59,19 +67,16 @@ public class Application {
     }
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
-        if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+        if(car.position.x + 100 > borderX || car.position.x < 0){
             car.turnLeft();
             car.turnLeft();
         }
-        if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
+        if(car.position.y + 60 > borderY || car.position.y < 0){
             car.turnLeft();
             car.turnLeft();
         }
     }
 
-    public void gitTest(){
-        // haha
-    }
 
 
 
@@ -99,9 +104,11 @@ public class Application {
 
                     if (car instanceof Volvo240){
                         for (Workshop<Volvo240> w : workshops){
-                            if (car.position.distance(w.position) < 25){
+                            if (car.getPosition().distance(w.getPosition()) < 25){
                                 w.addCar((Volvo240) car);
                                 carIterator.remove();
+
+
                             }
                         }
                     }

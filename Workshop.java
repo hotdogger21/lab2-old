@@ -1,6 +1,6 @@
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-public class Workshop <T extends Car> {
+public class Workshop <T extends Car> implements HasPosition {
 
     protected ArrayList<T> carlist;
     private final int size;
@@ -24,4 +24,8 @@ public class Workshop <T extends Car> {
         return carlist.removeLast();
     }
 
+    @Override
+    public Point2D.Double getPosition() {
+        return position;
+    }
 }
