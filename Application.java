@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Application {
@@ -15,6 +16,7 @@ public class Application {
     private ArrayList<Workshop> workshops = new ArrayList<>();
     static ArrayList<GraphicsComponent> graphicsComponents = new ArrayList<>();
 
+    static HashMap<HasPosition, GraphicsComponent> carsTest = new HashMap<>();
     protected ArrayList<Workshop<Volvo240>> volvowork = new ArrayList<>();
 
     public Application() {
@@ -27,23 +29,23 @@ public class Application {
         Volvo240 car1 = CarFactory.createVolvo();
         car1.position.x = 300;
         car1.direction = 2;
-        graphicsComponents.add(factory.createGraphics("pics/Volvo240.jpg", car1));
+        carsTest.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
 
 
         Scania car2 = CarFactory.createScania();
         car2.position.x = 0;
         car2.position.y = 100;
-        graphicsComponents.add(factory.createGraphics("pics/Scania.jpg", car2));
+        carsTest.put(car2, factory.createGraphics("pics/Scania.jpg", car1));
 
         Saab95 car3 = CarFactory.createSaab();
         car3.position.x = 300;
         car3.position.y = 200;
-        graphicsComponents.add( factory.createGraphics("pics/Saab95.jpg", car3));
+        carsTest.put(car3, factory.createGraphics("pics/Saab95.jpg", car3));
 
         Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
         volvoworkshop.position.x = 300;
         volvoworkshop.position.y = 300;
-        graphicsComponents.add(factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
+        carsTest.put(volvoworkshop, factory.createGraphics("pics/Scania.jpg", volvoworkshop));
 
 
 

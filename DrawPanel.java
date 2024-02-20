@@ -49,7 +49,7 @@ public class DrawPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (GraphicsComponent graphic : Application.graphicsComponents) {
+        for (GraphicsComponent graphic : Application.carsTest.values()) {
             graphic.draw(g);
         }
     }
