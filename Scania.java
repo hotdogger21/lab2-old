@@ -12,7 +12,7 @@ public class Scania extends Truck{
     }
 
     public void openRamp(){
-        ramp.openRamp();
+        ramp.openRamp(currentSpeed);
         platformangle = Math.min(70, platformangle + 1);
     }
 

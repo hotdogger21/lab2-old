@@ -1,4 +1,8 @@
 public interface HasRamp {
 
-    void
+    void gas();
+    void startEngine();
+    void openRamp();
+    void closeRamp();
+
 }

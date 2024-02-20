@@ -13,7 +13,7 @@ public class transport extends Truck{
     }
 
     public void openRamp(){
-        ramp.openRamp();
+        ramp.openRamp(currentSpeed);
     }
 
     public void closeRamp(){
