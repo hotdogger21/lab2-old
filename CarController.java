@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+
 import static java.lang.System.out;
 
 /*
@@ -25,7 +27,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     protected CarView frame;
     // A list of cars, modify if needed
-    protected ArrayList<Car> cars = new ArrayList<>();
+    protected Set<HasPosition> cars;
 
 
 
