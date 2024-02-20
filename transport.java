@@ -3,13 +3,34 @@ import java.awt.geom.Point2D;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class transport extends Truck{
+public class transport extends Car implements HasRamp{
+
+    platform ramp = new platform();
 
     Deque<Car> carStack;
 
     public transport(){
-        super(2, 90, Color.green, "car transporter", true);
+        super(2, 90, Color.green, "car transporter");
         carStack = new ArrayDeque<>();
+    }
+    public void gas(double amount){
+        if (amount < 0){
+            throw new RuntimeException("no negative amounts!!!");
+        }
+        else if (ramp.rampOpen) {
+            throw new RuntimeException("no driving when the platform is raised!");
+        }
+        else {
+            incrementSpeed(Math.min(1, amount));
+            currentSpeed = Math.min(enginePower, currentSpeed);
+
+        }
+    }
+
+    public void startEngine(){
+        if (!ramp.rampOpen){
+            currentSpeed = 0.1;
+        }
     }
 
     public void openRamp(){

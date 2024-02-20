@@ -2,7 +2,7 @@ public class platform {
 
     protected boolean rampOpen;
 
-    public platform(Truck turk){
+    public platform(){
         this.rampOpen = false;
     }
 
