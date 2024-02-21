@@ -17,6 +17,7 @@ public class DrawPanel extends JPanel {
 
     BufferedImage volvoImage;
 
+    HashMap<HasPosition, GraphicsComponent> graphicComponents;
 
     // To keep track of a single car's position
 
@@ -35,7 +36,8 @@ public class DrawPanel extends JPanel {
 
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
+    public DrawPanel(int x, int y, HashMap<HasPosition, GraphicsComponent> graphicsComponents) {
+        this.graphicComponents = graphicsComponents;
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
@@ -49,7 +51,7 @@ public class DrawPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (GraphicsComponent graphic : Application.carsTest.values()) {
+        for (GraphicsComponent graphic : graphicComponents.values()) {
             graphic.draw(g);
         }
     }

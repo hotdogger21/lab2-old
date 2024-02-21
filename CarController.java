@@ -22,15 +22,12 @@ public class CarController {
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
+    private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     protected CarView frame;
     // A list of cars, modify if needed
-    protected ArrayList<Car> cars;
-
-    public CarController(ArrayList<Car> cars){
-        this.cars = cars;
-    }
+    protected ArrayList<Car> cars = new ArrayList<>();
 
 
 
@@ -95,5 +92,4 @@ public class CarController {
             car.stopEngine();
         }
     }
-
 }

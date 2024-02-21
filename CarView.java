@@ -4,6 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -40,9 +41,9 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
+    public CarView(String framename, CarController cc, HashMap<HasPosition, GraphicsComponent>  graphicsComponents){
         this.carC = cc;
-        drawPanel = new DrawPanel(X, Y-240);
+        drawPanel = new DrawPanel(X, Y-240, graphicsComponents);
         initComponents(framename);
     }
 
