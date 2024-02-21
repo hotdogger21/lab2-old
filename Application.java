@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +17,7 @@ public class Application {
     private ArrayList<Workshop> workshops = new ArrayList<>();
 
     static HashMap<HasPosition, GraphicsComponent> carsTest = new HashMap<>();
-    protected ArrayList<Workshop<Volvo240>> volvowork = new ArrayList<>();
+
 
     public Application() {
 
@@ -46,8 +47,11 @@ public class Application {
         volvoworkshop.position.y = 300;
         carsTest.put(volvoworkshop, factory.createGraphics("pics/Scania.jpg", volvoworkshop));
 
-
-        cc.cars = carsTest.keySet();
+        for(HasPosition s : carsTest.keySet() ){
+            if( s instanceof Car){
+                cc.cars.add((Car) s);
+            }
+        }
 
 
 
