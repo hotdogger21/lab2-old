@@ -21,7 +21,7 @@ public class Application {
 
     public Application() {
 
-        cc = new CarController();
+
 
         GraphicsFactory factory = new GraphicsFactory();
 
@@ -35,7 +35,7 @@ public class Application {
         Scania car2 = CarFactory.createScania();
         car2.position.x = 0;
         car2.position.y = 100;
-        carsTest.put(car2, factory.createGraphics("pics/Scania.jpg", car1));
+        carsTest.put(car2, factory.createGraphics("pics/Scania.jpg", car2));
 
         Saab95 car3 = CarFactory.createSaab();
         car3.position.x = 300;
@@ -45,18 +45,19 @@ public class Application {
         Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
         volvoworkshop.position.x = 300;
         volvoworkshop.position.y = 300;
-        carsTest.put(volvoworkshop, factory.createGraphics("pics/Scania.jpg", volvoworkshop));
+        carsTest.put(volvoworkshop, factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
 
         for(HasPosition s : carsTest.keySet() ){
             if( s instanceof Car){
-                cc.cars.add((Car) s);
+                cars.add((Car) s);
             }
         }
 
+        cc = new CarController(cars);
 
 
         // Start a new view and send a reference of cc
-        frame = new CarView("CarSim 1.0", cc);
+        frame = new CarView("CarSim 1.0", cc, carsTest);
 
         // Start the timer
         timer.start();
@@ -86,7 +87,24 @@ public class Application {
             while (carIterator.hasNext()){
                 Car car = carIterator.next();
                 {
-                    car.move();
+                        car.move();
+                        int x = (int) Math.round(car.position.x);
+                        int y = (int) Math.round(car.position.y);
+                        int borderX = frame.drawPanel.getWidth();
+                        int borderY = frame.drawPanel.getHeight();
+                        frame.drawPanel.moveit(x, y, car);
+                        // repaint() calls the paintComponent method of the panel
+                        frame.drawPanel.repaint();
+                        if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+                            car.turnLeft();
+                            car.turnLeft();
+                        }
+                        if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
+                            car.turnLeft();
+                            car.turnLeft();
+                        }
+
+                    }
 
                     //finns det något annat sätt att få tag i drawpanels höjd och bredd utan att ha en komposition av carview
                     int borderX = frame.drawPanel.getWidth();
@@ -103,12 +121,10 @@ public class Application {
                             if (car.getPosition().distance(w.getPosition()) < 25){
                                 w.addCar((Volvo240) car);
                                 carIterator.remove();
-
                             }
                         }
                     }
                 }
             }
         }
-    }
 }
