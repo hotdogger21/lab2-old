@@ -5,4 +5,6 @@ public interface HasPosition {
 
 
     public Point2D.Double getPosition();
+
+
 }
