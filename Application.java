@@ -88,33 +88,11 @@ public class Application {
                 Car car = carIterator.next();
                 {
                         car.move();
-                        int x = (int) Math.round(car.position.x);
-                        int y = (int) Math.round(car.position.y);
                         int borderX = frame.drawPanel.getWidth();
                         int borderY = frame.drawPanel.getHeight();
-                        frame.drawPanel.moveit(x, y, car);
-                        // repaint() calls the paintComponent method of the panel
                         frame.drawPanel.repaint();
-                        if(car.position.x + 100 > borderX || car.position.x < 0){
-                            car.turnLeft();
-                            car.turnLeft();
-                        }
-                        if(car.position.y + 60 > borderY || car.position.y < 0){
-                            car.turnLeft();
-                            car.turnLeft();
-                        }
-
+                        CheckCarCollision(car,borderX,borderY);
                     }
-
-                    //finns det något annat sätt att få tag i drawpanels höjd och bredd utan att ha en komposition av carview
-                    int borderX = frame.drawPanel.getWidth();
-                    int borderY = frame.drawPanel.getHeight();
-
-
-                    //observer pattern (i framtiden)
-                    frame.drawPanel.repaint();
-
-                    CheckCarCollision(car,borderX,borderY);
 
                     if (car instanceof Volvo240){
                         for (Workshop<Volvo240> w : workshops){
