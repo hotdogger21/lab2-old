@@ -95,11 +95,11 @@ public class Application {
                         frame.drawPanel.moveit(x, y, car);
                         // repaint() calls the paintComponent method of the panel
                         frame.drawPanel.repaint();
-                        if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
+                        if(car.position.x + 100 > borderX || car.position.x < 0){
                             car.turnLeft();
                             car.turnLeft();
                         }
-                        if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
+                        if(car.position.y + 60 > borderY || car.position.y < 0){
                             car.turnLeft();
                             car.turnLeft();
                         }

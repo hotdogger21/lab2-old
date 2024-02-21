@@ -17,9 +17,10 @@ import static java.lang.System.out;
 
 public class CarController {
 
-    protected ArrayList<Car> cars = new ArrayList<>();
+    protected ArrayList<Car> cars;
 
     public CarController(ArrayList<Car> cars) {
+        this.cars = cars;
     }
 
 
