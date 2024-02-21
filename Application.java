@@ -19,35 +19,21 @@ public class Application {
     protected ArrayList<Workshop<Volvo240>> volvowork = new ArrayList<>();
 
     public Application() {
-
-        cc = new CarController();
-
-        GraphicsFactory factory = new GraphicsFactory();
+        createCars();
 
 
-        Volvo240 car1 = CarFactory.createVolvo();
-        car1.position.x = 300;
-        car1.direction = 2;
-        carsTest.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
 
 
-        Scania car2 = CarFactory.createScania();
-        car2.position.x = 0;
-        car2.position.y = 100;
-        carsTest.put(car2, factory.createGraphics("pics/Scania.jpg", car1));
 
-        Saab95 car3 = CarFactory.createSaab();
-        car3.position.x = 300;
-        car3.position.y = 200;
-        carsTest.put(car3, factory.createGraphics("pics/Saab95.jpg", car3));
+        for (HasPosition s : carsTest.keySet()){
+            if (s instanceof Car){
+                cars.add((Car) s);
+            }
+        }
 
-        Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
-        volvoworkshop.position.x = 300;
-        volvoworkshop.position.y = 300;
-        carsTest.put(volvoworkshop, factory.createGraphics("pics/Scania.jpg", volvoworkshop));
+        cc = new CarController(cars);
 
-
-        cc.cars = carsTest.keySet();
+        // cc.cars = carsTest.keySet();
 
 
 
@@ -67,6 +53,31 @@ public class Application {
             car.turnLeft();
             car.turnLeft();
         }
+    }
+
+    private void createCars(){
+        GraphicsFactory factory = new GraphicsFactory();
+
+        Volvo240 car1 = CarFactory.createVolvo();
+        car1.position.x = 300;
+        car1.direction = 2;
+        carsTest.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
+
+        Scania car2 = CarFactory.createScania();
+        car2.position.x = 0;
+        car2.position.y = 100;
+        carsTest.put(car2, factory.createGraphics("pics/Scania.jpg", car2));
+
+        Saab95 car3 = CarFactory.createSaab();
+        car3.position.x = 300;
+        car3.position.y = 200;
+        carsTest.put(car3, factory.createGraphics("pics/Saab95.jpg", car3));
+
+        Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
+        volvoworkshop.position.x = 300;
+        volvoworkshop.position.y = 300;
+        carsTest.put(volvoworkshop, factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
+
     }
 
 

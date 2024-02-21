@@ -22,12 +22,15 @@ public class CarController {
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     protected CarView frame;
     // A list of cars, modify if needed
-    protected Set<HasPosition> cars;
+    protected ArrayList<Car> cars;
+
+    public CarController(ArrayList<Car> cars){
+        this.cars = cars;
+    }
 
 
 
@@ -93,32 +96,4 @@ public class CarController {
         }
     }
 
-
-    /* Each step the TimerListener moves all the cars in the list and tells the
-     * view to update its images. Change this method to your needs.
-     * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.position.x);
-                int y = (int) Math.round(car.position.y);
-                int borderX = frame.drawPanel.getWidth();
-                int borderY = frame.drawPanel.getHeight();
-                frame.drawPanel.moveit(x, y, car);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-                if(car.position.x + frame.drawPanel.volvoImage.getWidth() > borderX || car.position.x < 0){
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-                if(car.position.y + frame.drawPanel.volvoImage.getHeight() > borderY || car.position.y < 0){
-                    car.turnLeft();
-                    car.turnLeft();
-                }
-
-
-            }
-        }
-    }
 }
