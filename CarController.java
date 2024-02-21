@@ -16,23 +16,12 @@ import static java.lang.System.out;
  */
 
 public class CarController {
-    // member fields:
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    protected ArrayList<Car> cars;
 
-    // The frame that represents this instance View of the MVC pattern
-    protected CarView frame;
-    // A list of cars, modify if needed
-    protected ArrayList<Car> cars = new ArrayList<>();
-
-
-
-    //methods:
-
+    public CarController(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
 
 
     public void gas(int amount) {
@@ -92,4 +81,10 @@ public class CarController {
             car.stopEngine();
         }
     }
+
+
+    /* Each step the TimerListener moves all the cars in the list and tells the
+     * view to update its images. Change this method to your needs.
+     * */
+
 }
