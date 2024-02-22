@@ -8,14 +8,18 @@ public class Application {
     private CarController cc;
     private CarModel model;
 
+    private int windowWidth = 800;
+    private int windowHeight = 800;
 
+    private int viewPortWidth = windowWidth;
+    private int viewPortHeight = windowHeight - 260;
 
 
     public Application() {
 
         model = createModel();
         cc = new CarController(model);
-        frame = new CarView("my car game 1",cc,model);
+        frame = new CarView("my car game 1",cc,model, viewPortWidth, viewPortHeight, windowWidth, windowHeight);
         model.addObserver(frame.drawPanel);
 
     }
@@ -25,7 +29,8 @@ public class Application {
         ArrayList<Car> carstemp =  listCars(carsTest);
         ArrayList<Workshop> worktemp = listWorkshops(carsTest);
 
-        CarModel temp = new CarModel(800, 560, carsTest);
+        windowHeight = 560;
+        CarModel temp = new CarModel(viewPortWidth, viewPortHeight, carsTest);
         temp.cars = carstemp;
         temp.workshops = worktemp;
         return temp;

@@ -15,8 +15,8 @@ import java.util.HashMap;
  **/
 
 public class CarView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 800;
+    private int X = 800;
+    private int Y = 800;
 
     private CarModel model;
 
@@ -43,10 +43,12 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc, CarModel model){
+    public CarView(String framename, CarController cc, CarModel model, int viewPortWidth, int viewPortHeight, int windowWidth, int windowHeight){
+        this.X = windowWidth;
+        this.Y = windowHeight;
         this.carC = cc;
         this.model = model;
-        drawPanel = new DrawPanel(X, Y-240, model.carmap);
+        drawPanel = new DrawPanel(viewPortWidth, viewPortHeight, model.carmap);
         initComponents(framename);
     }
 
