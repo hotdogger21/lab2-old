@@ -7,8 +7,6 @@ public class Application {
     private CarView frame;
     private CarController cc;
     private CarModel model;
-    private final int delay = 50;
-    //private Timer timer = new Timer(delay, new TimerListener());
 
 
 

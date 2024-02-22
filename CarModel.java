@@ -55,7 +55,6 @@ public class CarModel {
                 Car car = carIterator.next();
                 {
                     car.move();
-                    //frame.drawPanel.repaint(); //fixa med observer pattern
                     updateObservers();
                     CheckCarCollision(car,borderX,borderY);
                 }
