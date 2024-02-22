@@ -23,13 +23,15 @@ public class CarModel {
         this.carmap = carmap;
     }
 
+    public void addObserver(observer l){
+        observers.add(l);
+    }
+
     protected void updateObservers (){
         for (observer l : observers){
             l.actOnUpdate();
         }
     }
-
-
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
         if(car.position.x + 100 > borderX || car.position.x < 0){
