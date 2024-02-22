@@ -44,6 +44,7 @@ public class CarModel {
         }
     }
 
+    // test thing
     private class TimerListener implements ActionListener {
 
         //tillämpa functional decomposition på denna metod
