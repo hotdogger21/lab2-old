@@ -19,8 +19,8 @@ public class CarController {
 
     protected ArrayList<Car> cars;
 
-    public CarController(ArrayList<Car> cars) {
-        this.cars = cars;
+    public CarController(CarModel model) {
+        this.cars = model.cars;
     }
 
 

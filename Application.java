@@ -10,27 +10,49 @@ public class Application {
 
 
     private CarView frame;
-    private final int delay = 50;
-    private Timer timer = new Timer(delay, new TimerListener());
     private CarController cc;
-    private ArrayList<Car> cars = new ArrayList<>();
-    private ArrayList<Workshop> workshops = new ArrayList<>();
+    private CarModel model;
+    private final int delay = 50;
+    //private Timer timer = new Timer(delay, new TimerListener());
 
-    static HashMap<HasPosition, GraphicsComponent> carsTest = new HashMap<>();
+
 
 
     public Application() {
 
+        model = createModel();
+        cc = new CarController(model);
+        frame = new CarView("my car game 1",cc,model);
 
+        // Start the timer
+        //timer.start();
+    }
 
+    private CarModel createModel(){
+        HashMap<HasPosition, GraphicsComponent> carsTest = createCarMap();
+        ArrayList<Car> carstemp =  listCars(carsTest);
+        ArrayList<Workshop> worktemp = listWorkshops(carsTest);
+
+        CarModel temp = new CarModel(800, 560, carsTest);
+        temp.cars = carstemp;
+        temp.workshops = worktemp;
+        return temp;
+    }
+
+    private HashMap<HasPosition, GraphicsComponent> createCarMap(){
+        HashMap<HasPosition, GraphicsComponent> carsTest = new HashMap<>();
         GraphicsFactory factory = new GraphicsFactory();
+
+        Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
+        volvoworkshop.position.x = 300;
+        volvoworkshop.position.y = 300;
+        carsTest.put(volvoworkshop, factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
 
 
         Volvo240 car1 = CarFactory.createVolvo();
         car1.position.x = 300;
         car1.direction = 2;
         carsTest.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
-
 
         Scania car2 = CarFactory.createScania();
         car2.position.x = 0;
@@ -42,28 +64,30 @@ public class Application {
         car3.position.y = 200;
         carsTest.put(car3, factory.createGraphics("pics/Saab95.jpg", car3));
 
-        Workshop<Volvo240> volvoworkshop = WorkshopFactory.createVolvoWorkshop(5);
-        volvoworkshop.position.x = 300;
-        volvoworkshop.position.y = 300;
-        carsTest.put(volvoworkshop, factory.createGraphics("pics/VolvoBrand.jpg", volvoworkshop));
+        return carsTest;
+    }
 
-        for(HasPosition s : carsTest.keySet() ){
+    private ArrayList<Workshop> listWorkshops(HashMap<HasPosition, GraphicsComponent> CarMap){
+        ArrayList<Workshop> workshops = new ArrayList<>();
+        for(HasPosition s : CarMap.keySet() ){
+            if( s instanceof Workshop<?>){
+                workshops.add((Workshop) s);
+            }
+        }
+        return workshops;
+    }
+
+    private ArrayList<Car> listCars(HashMap<HasPosition, GraphicsComponent> CarMap){
+        ArrayList<Car> cars = new ArrayList<>();
+        for(HasPosition s : CarMap.keySet() ){
             if( s instanceof Car){
                 cars.add((Car) s);
             }
         }
-
-        cc = new CarController(cars);
-
-
-        // Start a new view and send a reference of cc
-        frame = new CarView("CarSim 1.0", cc, carsTest);
-
-        // Start the timer
-        timer.start();
+        return cars;
     }
 
-    private void CheckCarCollision (Car car, int borderX, int borderY){
+   /* private void CheckCarCollision (Car car, int borderX, int borderY){
         if(car.position.x + 100 > borderX || car.position.x < 0){
             car.turnLeft();
             car.turnLeft();
@@ -72,12 +96,12 @@ public class Application {
             car.turnLeft();
             car.turnLeft();
         }
-    }
+    }*/
 
 
 
 
-    private class TimerListener implements ActionListener {
+  /*  private class TimerListener implements ActionListener {
 
         //tillämpa functional decomposition på denna metod
         public void actionPerformed(ActionEvent e) {
@@ -96,7 +120,7 @@ public class Application {
 
                     if (car instanceof Volvo240){
                         for (Workshop<Volvo240> w : workshops){
-                            if (car.getPosition().distance(w.getPosition()) < 25){
+                            if (car.getPosition().distance(w.getPosition()) < 8){
                                 w.addCar((Volvo240) car);
                                 carIterator.remove();
                             }
@@ -104,5 +128,5 @@ public class Application {
                     }
                 }
             }
-        }
+        }*/
 }
