@@ -23,9 +23,8 @@ public class Application {
         model = createModel();
         cc = new CarController(model);
         frame = new CarView("my car game 1",cc,model);
+        model.addObserver(frame.drawPanel);
 
-        // Start the timer
-        //timer.start();
     }
 
     private CarModel createModel(){
