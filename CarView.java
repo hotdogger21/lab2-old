@@ -41,14 +41,14 @@ public class CarView extends JFrame{
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+    JButton addCarButton = new JButton("Add a car");
+    JButton removeCarButton = new JButton("Remove a car");
 
     // Constructor
-    public CarView(String framename, CarController cc, CarModel model, int viewPortWidth, int viewPortHeight, int windowWidth, int windowHeight){
-        this.X = windowWidth;
-        this.Y = windowHeight;
+    public CarView(String framename, CarController cc, CarModel model){
         this.carC = cc;
         this.model = model;
-        drawPanel = new DrawPanel(viewPortWidth, viewPortHeight, model.carmap);
+        drawPanel = new DrawPanel(model, model.carmap);
         initComponents(framename);
     }
 
@@ -105,6 +105,16 @@ public class CarView extends JFrame{
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
+
+        addCarButton.setBackground(Color.green);
+        addCarButton.setForeground(Color.black);
+        addCarButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(addCarButton);
+
+        removeCarButton.setBackground(Color.yellow);
+        removeCarButton.setForeground(Color.black);
+        removeCarButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(removeCarButton);
 
         // This actionListener is for the gas button only
         // TODO: Create more for each component as necessary

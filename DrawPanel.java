@@ -9,10 +9,10 @@ public class DrawPanel extends JPanel implements observer {
     HashMap<HasPosition, GraphicsComponent> graphicComponents;
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, HashMap<HasPosition, GraphicsComponent> graphicsComponents) {
+    public DrawPanel(CarModel model, HashMap<HasPosition, GraphicsComponent> graphicsComponents) {
         this.graphicComponents = graphicsComponents;
         this.setDoubleBuffered(true);
-        this.setPreferredSize(new Dimension(x, y));
+        this.setPreferredSize(new Dimension(model.borderX, model.borderY));
         this.setBackground(Color.green);
 
     }

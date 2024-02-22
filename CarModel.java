@@ -12,14 +12,12 @@ public class CarModel {
     protected ArrayList<Workshop> workshops = new ArrayList<>();
     private ArrayList<observer> observers = new ArrayList<>();
     protected HashMap<HasPosition, GraphicsComponent> carmap;
-    int borderX;
-    int borderY;
+    int borderX = 800;
+    int borderY = 560;
 
-    public CarModel(int x , int y,HashMap<HasPosition, GraphicsComponent> carmap ) {
+    public CarModel(HashMap<HasPosition, GraphicsComponent> carmap) {
         // Start the timer
         timer.start();
-        borderX = x;
-        borderY = y;
         this.carmap = carmap;
     }
 
