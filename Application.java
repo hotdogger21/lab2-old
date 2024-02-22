@@ -1,10 +1,5 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Application {
 
@@ -24,8 +19,6 @@ public class Application {
         cc = new CarController(model);
         frame = new CarView("my car game 1",cc,model);
 
-        // Start the timer
-        //timer.start();
     }
 
     private CarModel createModel(){
@@ -39,6 +32,7 @@ public class Application {
         return temp;
     }
 
+    // Populates a hashmap where key is an object implementing HasPosition interface and value is a GraphicsComponent
     private HashMap<HasPosition, GraphicsComponent> createCarMap(){
         HashMap<HasPosition, GraphicsComponent> carsTest = new HashMap<>();
         GraphicsFactory factory = new GraphicsFactory();
@@ -67,6 +61,7 @@ public class Application {
         return carsTest;
     }
 
+    // Finds all workshop keys and insert into a new list of all workshops in the scene
     private ArrayList<Workshop> listWorkshops(HashMap<HasPosition, GraphicsComponent> CarMap){
         ArrayList<Workshop> workshops = new ArrayList<>();
         for(HasPosition s : CarMap.keySet() ){
@@ -77,6 +72,7 @@ public class Application {
         return workshops;
     }
 
+    // Finds all car keys and insert into a new list of all cars
     private ArrayList<Car> listCars(HashMap<HasPosition, GraphicsComponent> CarMap){
         ArrayList<Car> cars = new ArrayList<>();
         for(HasPosition s : CarMap.keySet() ){
@@ -86,47 +82,4 @@ public class Application {
         }
         return cars;
     }
-
-   /* private void CheckCarCollision (Car car, int borderX, int borderY){
-        if(car.position.x + 100 > borderX || car.position.x < 0){
-            car.turnLeft();
-            car.turnLeft();
-        }
-        if(car.position.y + 60 > borderY || car.position.y < 0){
-            car.turnLeft();
-            car.turnLeft();
-        }
-    }*/
-
-
-
-
-  /*  private class TimerListener implements ActionListener {
-
-        //tillämpa functional decomposition på denna metod
-        public void actionPerformed(ActionEvent e) {
-
-            Iterator<Car> carIterator = cars.iterator();
-
-            while (carIterator.hasNext()){
-                Car car = carIterator.next();
-                {
-                        car.move();
-                        int borderX = frame.drawPanel.getWidth();
-                        int borderY = frame.drawPanel.getHeight();
-                        frame.drawPanel.repaint();
-                        CheckCarCollision(car,borderX,borderY);
-                    }
-
-                    if (car instanceof Volvo240){
-                        for (Workshop<Volvo240> w : workshops){
-                            if (car.getPosition().distance(w.getPosition()) < 8){
-                                w.addCar((Volvo240) car);
-                                carIterator.remove();
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
 }
