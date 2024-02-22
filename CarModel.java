@@ -34,17 +34,16 @@ public class CarModel {
     }
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
-        if(car.position.x + 100 > borderX || car.position.x < 0){
+        if(car.position.x + carmap.get(car).graphics.getWidth() > borderX || car.position.x < 0){
             car.turnLeft();
             car.turnLeft();
         }
-        if(car.position.y + 60 > borderY || car.position.y < 0){
+        if(car.position.y + carmap.get(car).graphics.getHeight()  > borderY || car.position.y < 0){
             car.turnLeft();
             car.turnLeft();
         }
     }
 
-    // test thing
     private class TimerListener implements ActionListener {
 
         //tillämpa functional decomposition på denna metod
@@ -54,11 +53,10 @@ public class CarModel {
 
             while (carIterator.hasNext()){
                 Car car = carIterator.next();
-                {
+
                     car.move();
-                    updateObservers();
                     CheckCarCollision(car,borderX,borderY);
-                }
+
 
                 if (car instanceof Volvo240){
                     for (Workshop<Volvo240> w : workshops){
@@ -68,6 +66,8 @@ public class CarModel {
                         }
                     }
                 }
+
+                updateObservers();
             }
         }
     }
