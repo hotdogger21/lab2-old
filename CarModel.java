@@ -81,6 +81,7 @@ public class CarModel {
                     for (Workshop<Volvo240> w : workshops){
                         if (car.getPosition().distance(w.getPosition()) < 8){
                             w.addCar((Volvo240) car);
+                            carmap.remove(car);
                             carIterator.remove();
                         }
                     }
