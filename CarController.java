@@ -93,9 +93,10 @@ public class CarController {
     }
 
     public void RemoveCar() {
-        // TODO check if empty
-        model.removeCar();
-        cars = model.cars;
+        if(!cars.isEmpty()){
+            model.removeCar();
+            cars = model.cars;
+        }
     }
 
 
