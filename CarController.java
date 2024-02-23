@@ -86,8 +86,10 @@ public class CarController {
     }
 
     public void AddCar() {
-        model.addCar();
-        cars = model.cars;
+        if (cars.size() < 10){
+            model.addCar();
+            cars = model.cars;
+        }
     }
 
     public void RemoveCar() {
