@@ -48,6 +48,10 @@ public class CarModel {
         this.cars = listCars(carmap);
     }
 
+    protected void removeCar(){
+        carmap.remove(cars.removeFirst());
+    }
+
     private void CheckCarCollision (Car car, int borderX, int borderY){
         if(car.position.x + carmap.get(car).graphics.getWidth() > borderX || car.position.x < 0){
             car.turnLeft();

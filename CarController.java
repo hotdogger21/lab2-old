@@ -87,11 +87,13 @@ public class CarController {
 
     public void AddCar() {
         model.addCar();
+        cars = model.cars;
     }
 
     public void RemoveCar() {
         // TODO check if empty
-        cars.removeFirst();
+        model.removeCar();
+        cars = model.cars;
     }
 
 
