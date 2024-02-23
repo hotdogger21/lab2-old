@@ -31,10 +31,21 @@ public class CarModel {
         }
     }
 
+    private ArrayList<Car> listCars(HashMap<HasPosition, GraphicsComponent> CarMap){
+        ArrayList<Car> cars = new ArrayList<>();
+        for(HasPosition s : CarMap.keySet() ){
+            if( s instanceof Car){
+                cars.add((Car) s);
+            }
+        }
+        return cars;
+    }
+
     protected void addCar(){
         GraphicsFactory factory = new GraphicsFactory();
-        Volvo240 car1 = CarFactory.createVolvo();
-        carmap.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
+        Volvo240 cartemp = CarFactory.createVolvo();
+        carmap.put(cartemp, factory.createGraphics("pics/Volvo240.jpg", cartemp));
+        this.cars = listCars(carmap);
     }
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
