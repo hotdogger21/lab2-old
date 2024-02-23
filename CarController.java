@@ -19,8 +19,11 @@ public class CarController {
 
     protected ArrayList<Car> cars;
 
+    private CarModel model;
+
     public CarController(CarModel model) {
         this.cars = model.cars;
+        this.model = model;
     }
 
 
@@ -83,7 +86,7 @@ public class CarController {
     }
 
     public void AddCar() {
-        cars.add(new Volvo240());
+        model.addCar();
     }
 
     public void RemoveCar() {

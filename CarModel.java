@@ -12,10 +12,10 @@ public class CarModel {
     protected ArrayList<Workshop> workshops = new ArrayList<>();
     private ArrayList<observer> observers = new ArrayList<>();
     protected HashMap<HasPosition, GraphicsComponent> carmap;
-    int borderX = 800;
-    int borderY = 560;
+    protected int borderX = 800;
+    protected int borderY = 560;
 
-    public CarModel(HashMap<HasPosition, GraphicsComponent> carmap) {
+    public CarModel(HashMap<HasPosition, GraphicsComponent> carmap ) {
         // Start the timer
         timer.start();
         this.carmap = carmap;
@@ -29,6 +29,12 @@ public class CarModel {
         for (observer l : observers){
             l.actOnUpdate();
         }
+    }
+
+    protected void addCar(){
+        GraphicsFactory factory = new GraphicsFactory();
+        Volvo240 car1 = CarFactory.createVolvo();
+        carmap.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
     }
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
