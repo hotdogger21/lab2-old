@@ -37,6 +37,10 @@ public class CarModel {
         carmap.put(car1, factory.createGraphics("pics/Volvo240.jpg", car1));
     }
 
+    protected void removeCar(){
+
+    }
+
     private void CheckCarCollision (Car car, int borderX, int borderY){
         if(car.position.x + carmap.get(car).graphics.getWidth() > borderX || car.position.x < 0){
             car.turnLeft();

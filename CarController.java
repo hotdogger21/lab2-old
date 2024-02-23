@@ -91,7 +91,7 @@ public class CarController {
 
     public void RemoveCar() {
         // TODO check if empty
-        cars.removeFirst();
+
     }
 
 
