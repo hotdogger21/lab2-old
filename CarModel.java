@@ -86,9 +86,8 @@ public class CarModel {
                         }
                     }
                 }
-
-                updateObservers();
             }
+            updateObservers();
         }
     }
 }
