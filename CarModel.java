@@ -8,8 +8,8 @@ import java.util.Iterator;
 public class CarModel {
     private final int delay = 50;
     private Timer timer = new Timer(delay, new CarModel.TimerListener());
-    protected ArrayList<Car> cars = new ArrayList<>();
-    protected ArrayList<Workshop> workshops = new ArrayList<>();
+    protected ArrayList<Car> cars;
+    protected ArrayList<Workshop> workshops;
     private ArrayList<observer> observers = new ArrayList<>();
     protected HashMap<HasPosition, GraphicsComponent> carmap;
     protected int borderX = 800;
@@ -19,6 +19,8 @@ public class CarModel {
         // Start the timer
         timer.start();
         this.carmap = carmap;
+        cars = listCars(carmap);
+        workshops = listWorkshops(carmap);
     }
 
     public void addObserver(observer l){
@@ -30,6 +32,17 @@ public class CarModel {
             l.actOnUpdate();
         }
     }
+
+    private ArrayList<Workshop> listWorkshops(HashMap<HasPosition, GraphicsComponent> CarMap){
+        ArrayList<Workshop> workshops = new ArrayList<>();
+        for(HasPosition s : CarMap.keySet() ){
+            if( s instanceof Workshop<?>){
+                workshops.add((Workshop) s);
+            }
+        }
+        return workshops;
+    }
+
 
     private ArrayList<Car> listCars(HashMap<HasPosition, GraphicsComponent> CarMap){
         ArrayList<Car> cars = new ArrayList<>();
@@ -54,11 +67,11 @@ public class CarModel {
     }
 
     private void CheckCarCollision (Car car, int borderX, int borderY){
-        if(car.position.x + carmap.get(car).graphics.getWidth() > borderX || car.position.x < 0){
+        if(car.position.x + carmap.get(car).getpicWidth() > borderX || car.position.x < 0){
             car.turnLeft();
             car.turnLeft();
         }
-        if(car.position.y + carmap.get(car).graphics.getHeight()  > borderY || car.position.y < 0){
+        if(car.position.y + carmap.get(car).getpicHeight()  > borderY || car.position.y < 0){
             car.turnLeft();
             car.turnLeft();
         }

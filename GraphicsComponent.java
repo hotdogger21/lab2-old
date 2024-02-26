@@ -8,7 +8,7 @@ public class GraphicsComponent<T extends HasPosition> {
 
     private T owner;
 
-    public BufferedImage graphics;
+    private BufferedImage graphics;
 
     private Point position = new Point(0,0); // graphics position
 
@@ -32,6 +32,14 @@ public class GraphicsComponent<T extends HasPosition> {
         }
 
         return image;
+    }
+
+    public int getpicWidth(){
+        return graphics.getWidth();
+    }
+
+    public int getpicHeight(){
+        return graphics.getHeight();
     }
 
 

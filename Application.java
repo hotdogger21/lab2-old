@@ -7,7 +7,6 @@ public class Application {
     private CarView frame;
     private CarController cc;
     private CarModel model;
-
     private int windowWidth = 800;
     private int windowHeight = 800;
 
@@ -24,12 +23,8 @@ public class Application {
 
     private CarModel createModel(){
         HashMap<HasPosition, GraphicsComponent> carsTest = createCarMap();
-        ArrayList<Car> carstemp =  listCars(carsTest);
-        ArrayList<Workshop> worktemp = listWorkshops(carsTest);
 
         CarModel temp = new CarModel(carsTest);
-        temp.cars = carstemp;
-        temp.workshops = worktemp;
         return temp;
     }
 
@@ -62,25 +57,4 @@ public class Application {
         return carsTest;
     }
 
-    // Finds all workshop keys and insert into a new list of all workshops in the scene
-    private ArrayList<Workshop> listWorkshops(HashMap<HasPosition, GraphicsComponent> CarMap){
-        ArrayList<Workshop> workshops = new ArrayList<>();
-        for(HasPosition s : CarMap.keySet() ){
-            if( s instanceof Workshop<?>){
-                workshops.add((Workshop) s);
-            }
-        }
-        return workshops;
-    }
-
-    // Finds all car keys and insert into a new list of all cars
-    private ArrayList<Car> listCars(HashMap<HasPosition, GraphicsComponent> CarMap){
-        ArrayList<Car> cars = new ArrayList<>();
-        for(HasPosition s : CarMap.keySet() ){
-            if( s instanceof Car){
-                cars.add((Car) s);
-            }
-        }
-        return cars;
-    }
 }
