@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel implements observer {
 
-    HashMap<HasPosition, GraphicsComponent> graphicComponents;
+    private HashMap<HasPosition, GraphicsComponent> graphicComponents;
 
     // Initializes the panel and reads the images
     public DrawPanel(CarModel model, HashMap<HasPosition, GraphicsComponent> graphicsComponents) {
