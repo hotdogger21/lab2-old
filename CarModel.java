@@ -78,17 +78,21 @@ public class CarModel {
                     CheckCarCollision(car,borderX,borderY);
 
 
-                if (car instanceof Volvo240){
-                    for (Workshop<Volvo240> w : workshops){
-                        if (car.getPosition().distance(w.getPosition()) < 8){
-                            w.addCar((Volvo240) car);
-                            carmap.remove(car);
-                            carIterator.remove();
-                        }
-                    }
-                }
+                addCarToWorkshop(car, carIterator);
             }
             updateObservers();
+        }
+    }
+
+    private void addCarToWorkshop(Car car, Iterator<Car> carIterator) {
+        if (car instanceof Volvo240){
+            for (Workshop<Volvo240> w : workshops){
+                if (car.getPosition().distance(w.getPosition()) < 8){
+                    w.addCar((Volvo240) car);
+                    carmap.remove(car);
+                    carIterator.remove();
+                }
+            }
         }
     }
 }
