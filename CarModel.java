@@ -49,6 +49,7 @@ public class CarModel {
     }
 
     protected void removeCar(){
+
         carmap.remove(cars.removeFirst());
     }
 

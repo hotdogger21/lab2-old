@@ -6,11 +6,11 @@ import java.io.IOException;
 public class GraphicsComponent<T extends HasPosition> {
 
 
-    T owner;
+    private T owner;
 
-    BufferedImage graphics;
+    public BufferedImage graphics;
 
-    Point position = new Point(0,0); // graphics position
+    private Point position = new Point(0,0); // graphics position
 
     GraphicsComponent(T owner, String graphics){
         this.owner = owner;
@@ -19,8 +19,9 @@ public class GraphicsComponent<T extends HasPosition> {
 
 
 
-    BufferedImage bufferImage(String path){
+    private BufferedImage bufferImage(String path){
         BufferedImage image = null;
+
 
         try {
             image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
